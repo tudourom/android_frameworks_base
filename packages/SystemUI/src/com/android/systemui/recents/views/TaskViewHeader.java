@@ -62,7 +62,6 @@ import com.android.systemui.recents.Recents;
 import com.android.systemui.recents.events.EventBus;
 import com.android.systemui.recents.events.activity.LaunchTaskEvent;
 import com.android.systemui.recents.events.ui.ShowApplicationInfoEvent;
-import com.android.systemui.slimrecent.icons.IconsHandler;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.recents.misc.Utilities;
 import com.android.systemui.recents.model.Task;
@@ -862,8 +861,7 @@ public class TaskViewHeader extends FrameLayout
                 mTaskBarViewLightTextColor : mTaskBarViewDarkTextColor);
         Drawable icon = null;
         if (activityInfo != null) {
-            icon = IconsHandler.getInstance(mContext).getIconFromHandler(mContext, activityInfo,
-                    /*scaleFactor*/1.0f, R.dimen.recents_task_view_header_height_tablet_land);
+            icon = Recents.getTaskLoader().getIconsHandler().getIconFromHandler(mContext, activityInfo);
         }
         if (icon == null) {
             icon = ssp.getBadgedApplicationIcon(activityInfo.applicationInfo, userId);
